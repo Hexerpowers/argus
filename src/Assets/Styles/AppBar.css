@@ -1,0 +1,295 @@
+.appbar {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    padding: 0.75rem 0;
+    background-color: rgb(30, 30, 30);
+    justify-content: center;
+    height: 30px;
+    box-shadow: rgb(0 0 0 / 25%) 0 4px 8px;
+    top: 0;
+    position: sticky;
+    z-index: 2;
+}
+
+.appbar-holder {
+    max-width: 990px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.appbar-inner {
+    display: flex;
+    flex-direction: row;
+}
+
+.appbar-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: default;
+}
+
+.appbar-logo-a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.appbar-logo-img {
+    width: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.appbar-feedback {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 2.5rem;
+}
+
+.appbar-feedback-a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.appbar-feedback:hover {
+    filter: brightness(1.15);
+}
+
+.appbar-notifications {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    width: 18px;
+    height: 30px;
+    margin-right: 1.82rem;
+}
+
+.appbar-notifications-available {
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    right: 0;
+    top: 5px;
+    position: absolute;
+    background-color: red;
+}
+
+.appbar-notifications-i {
+    cursor: pointer;
+}
+
+.appbar-notifications-i:hover {
+    filter: brightness(1.15);
+}
+
+.appbar-notifications-expandable {
+    position: absolute;
+    border-radius: 8px;
+    background: rgb(32, 30, 35);
+    top: calc(100% + 10px);
+    right: calc(100% - 34px);
+    border: 1px solid rgb(99, 95, 104);
+    transition: all 0.25s ease-in-out 0s;
+    transform-origin: left top;
+    transform: scaleY(0);
+    z-index: 3;
+}
+
+.appbar-notifications-outer {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    z-index: 2;
+}
+
+.appbar-notifications-active {
+    transform: scaleY(1);
+}
+
+.appbar-notifications-expandable-p {
+    position: absolute;
+    right: 15px;
+    transform: translateY(-100%);
+}
+
+.appbar-notifications-expandable-text {
+    width: 18.875rem;
+    height: 7.875rem;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgba(221, 221, 221, 0.4);
+    flex-direction: column;
+    font-size: 0.875rem;
+}
+
+
+.appbar-account {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    background: rgb(16, 15, 17);
+    border-radius: 60px;
+    font-size: 0.875rem;
+    padding-right: 0.75rem;
+}
+
+.appbar-account-inner {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.appbar-account-img {
+    width: 22px;
+    height: 22px;
+    border-radius: 22px;
+    margin: 4px 0px 4px 4px;
+}
+
+.appbar-account-text {
+    margin: 0px 8px;
+}
+
+.appbar-account-expandable {
+    position: absolute;
+    border-radius: 8px;
+    background: rgb(32, 30, 35);
+    top: calc(100% + 10px);
+    right: calc(27% - 34px);
+    border: 1px solid rgb(99, 95, 104);
+    transition: all 0.25s ease-in-out 0s;
+    transform-origin: left top;
+    transform: scaleY(0);
+    z-index: 3;
+}
+
+.appbar-account-outer {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    z-index: 2;
+}
+
+.appbar-account-active {
+    transform: scaleY(1);
+}
+
+.appbar-account-expandable-p {
+    position: absolute;
+    right: 15px;
+    transform: translateY(-100%);
+}
+
+.appbar-account-expandable-text {
+    width: 8rem;
+    height: 2rem;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgba(221, 221, 221, 0.4);
+    flex-direction: column;
+    font-size: 0.875rem;
+}
+
+.appbar-account-expandable-logout{
+    color: white;
+    cursor: pointer;
+}
+
+.appbar-account-expandable-logout:hover{
+    filter: brightness(1.15);
+}
+
+.appbar-auth-expandable {
+    position: absolute;
+    border-radius: 8px;
+    background: rgb(32, 30, 35);
+    top: calc(100% + 10px);
+    right: calc(27% - 34px);
+    border: 1px solid rgb(99, 95, 104);
+    transition: all 0.25s ease-in-out 0s;
+    transform-origin: left top;
+    transform: scaleY(0);
+    z-index: 3;
+}
+
+.appbar-auth-outer {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    z-index: 2;
+}
+
+.appbar-auth-active {
+    transform: scaleY(1);
+}
+
+.appbar-auth-expandable-p {
+    position: absolute;
+    right: 15px;
+    transform: translateY(-100%);
+}
+
+.appbar-auth-expandable-text {
+    width: 8.3rem;
+    height: 3.5rem;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgba(221, 221, 221, 0.4);
+    flex-direction: column;
+    font-size: 0.875rem;
+}
+
+.appbar-auth-expandable-login{
+    cursor: pointer;
+    padding-top: 0.2rem;
+}
+
+.appbar-auth-expandable-login:hover{
+    filter: brightness(1.15);
+    color: white;
+}
+
+.appbar-auth-expandable-register{
+    cursor: pointer;
+    padding-top: 0.3rem;
+    color: #b4d0ae;
+}
+
+.appbar-auth-expandable-register:hover{
+    filter: brightness(1.15);
+    color: white;
+}
+
+.elem-disabled {
+    display: none;
+}
