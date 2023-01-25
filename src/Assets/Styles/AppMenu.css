@@ -1,0 +1,265 @@
+.appmenu-inner {
+    list-style: none;
+    border-left: 0.75px dotted rgb(126, 120, 133);
+    opacity: 1;
+    padding: 0;
+}
+
+
+.appmenu-news-outer {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    border-radius: 0 10px 10px 0;
+    height: 45px;
+    width: 140px;
+}
+
+.appmenu-news-text {
+    opacity: 0.6;
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+
+.appmenu-news-outer:hover .appmenu-news-icon {
+    opacity: 1;
+    filter: brightness(1.15);
+}
+
+.appmenu-news-outer:hover .appmenu-news-text {
+    opacity: 1;
+    filter: brightness(1.15);
+}
+
+.appmenu-news-icon {
+    opacity: 0.6;
+}
+
+.appmenu-news-container {
+    transition: margin-top 0.15s ease 0s;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    height: 45px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+.appmenu-news-container-active {
+    background-color: rgb(32, 30, 35);
+}
+
+.appmenu-news-active {
+    position: absolute;
+    background: linear-gradient(to right, rgb(75, 161, 252) 3.44%, rgb(255, 255, 255) 100%);
+    width: 2px;
+    top: 0;
+    bottom: 0;
+    left: -0.25px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/*-----------------------------------------------------------------*/
+
+.appmenu-home-outer {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    border-radius: 0 10px 10px 0;
+    height: 45px;
+    width: 140px;
+}
+
+.appmenu-home-text {
+    opacity: 0.6;
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+
+.appmenu-home-outer:hover .appmenu-home-icon {
+    opacity: 1;
+    filter: brightness(1.15);
+}
+
+.appmenu-home-outer:hover .appmenu-home-text {
+    opacity: 1;
+    filter: brightness(1.15);
+}
+
+.appmenu-home-icon {
+    opacity: 0.6;
+}
+
+.appmenu-home-container {
+    transition: margin-top 0.15s ease 0s;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    height: 45px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+.appmenu-home-container-active {
+    background-color: rgb(32, 30, 35);
+}
+
+.appmenu-home-active {
+    position: absolute;
+    background: linear-gradient(to right, rgb(75, 161, 252) 3.44%, rgb(255, 255, 255) 100%);
+    width: 2px;
+    top: 0;
+    bottom: 0;
+    left: -0.25px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/*-----------------------------------------------------------------*/
+
+.appmenu-code-outer {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    border-radius: 0 10px 10px 0;
+    height: 45px;
+    width: 140px;
+}
+
+.appmenu-code-text {
+    opacity: 0.6;
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+
+.appmenu-code-outer:hover .appmenu-code-icon {
+    opacity: 1;
+    filter: brightness(1.15);
+}
+
+.appmenu-code-outer:hover .appmenu-code-text {
+    opacity: 1;
+    filter: brightness(1.15);
+}
+
+.appmenu-code-icon {
+    opacity: 0.6;
+}
+
+.appmenu-code-container {
+    transition: margin-top 0.15s ease 0s;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    height: 45px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+.appmenu-code-container-active {
+    background-color: rgb(32, 30, 35);
+}
+
+.appmenu-code-active {
+    position: absolute;
+    background: linear-gradient(to right, rgb(75, 161, 252) 3.44%, rgb(255, 255, 255) 100%);
+    width: 2px;
+    top: 0;
+    bottom: 0;
+    left: -0.25px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/*-----------------------------------------------------------------*/
+
+.appmenu-files-outer {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    border-radius: 0 10px 10px 0;
+    height: 45px;
+    width: 140px;
+}
+
+.appmenu-files-text {
+    opacity: 0.6;
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+
+.appmenu-files-outer:hover .appmenu-files-icon {
+    opacity: 1;
+    filter: brightness(1.15);
+}
+
+.appmenu-files-outer:hover .appmenu-files-text {
+    opacity: 1;
+    filter: brightness(1.15);
+}
+
+.appmenu-files-icon {
+    opacity: 0.6;
+}
+
+.appmenu-files-container {
+    transition: margin-top 0.15s ease 0s;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    height: 45px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+.appmenu-files-container-active {
+    background-color: rgb(32, 30, 35);
+}
+
+.appmenu-files-active {
+    position: absolute;
+    background: linear-gradient(to right, rgb(75, 161, 252) 3.44%, rgb(255, 255, 255) 100%);
+    width: 2px;
+    top: 0;
+    bottom: 0;
+    left: -0.25px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}

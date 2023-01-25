@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Logo_img from "../../Assets/Img/logo.jpg"
 
-class Logo extends Component {
+class LogoBarItem extends Component {
     render() {
         return (
             <div className="appbar-logo">
@@ -14,4 +14,4 @@ class Logo extends Component {
     }
 }
 
-export default Logo;
+export default LogoBarItem;

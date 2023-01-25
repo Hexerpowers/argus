@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Account extends Component {
+class AccountBarItem extends Component {
     constructor(props) {
         super(props);
         this.showAccount = this.showAccount.bind(this)
@@ -56,4 +56,4 @@ class Account extends Component {
     }
 }
 
-export default Account;
+export default AccountBarItem;

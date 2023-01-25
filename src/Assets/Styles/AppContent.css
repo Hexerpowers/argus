@@ -1,0 +1,103 @@
+.appcontent{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.8rem;
+}
+
+.appcontent-news{
+    display: none;
+}
+
+.appcontent-team{
+    display: none;
+    flex-direction:column;
+    width:800px;
+}
+
+.appcontent-code{
+    display: none;
+}
+
+.appcontent-files{
+    display: none;
+    flex-direction:column;
+    width:800px;
+}
+
+.appcontent-active{
+    display: flex;
+}
+
+.table-holder{
+    display: flex;
+    flex-direction: column;
+    padding: 1.18rem;
+    background: rgb(32, 30, 35);
+    border: 1px solid rgb(46, 43, 49);
+    border-radius: 10px;
+    color: rgb(186, 180, 194);
+}
+
+.team-status{
+    border: 1px solid rgb(46, 43, 49);
+    border-radius: 10px;
+    color: rgb(67, 67, 67);
+    padding: 0.7rem;
+}
+
+.team-status-ok{
+    background-color: #7fd843;
+}
+
+.team-status-wait{
+    background-color: #b0b0b0;
+}
+
+.team-status-err{
+    background-color: #d84848;
+}
+
+.table-caption{
+    margin: 0;
+    padding-bottom:8px;
+    border-bottom: 1px dotted rgb(126, 120, 133);
+}
+
+.table-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.7rem;
+    border-bottom: 1px dotted rgb(126, 120, 133);
+    font-size: 1.05rem;
+}
+.table-row:hover{
+    filter: brightness(1.2);
+    background: rgb(46, 43, 49);
+}
+
+
+.table-row-name{
+    width: 240px;
+}
+
+.table-row-val{
+    padding: 5px;
+    background: rgb(32, 30, 35);
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+    color: rgb(186, 180, 194);
+}
+
+.table-row-text{
+    padding: 5px;
+    font-size: 1rem;
+    color: rgb(186, 180, 194);
+}
+
+.table-row-text a{
+    font-size: 1rem;
+    color: rgb(27, 129, 255);
+}

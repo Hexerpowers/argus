@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
-import Swal from 'sweetalert2'
 import '@sweetalert2/theme-dark/dark.css';
 
-class Feedback extends Component {
+class FeedbackBarItem extends Component {
     render() {
         return (
             <div className="appbar-feedback">
                 <a className="appbar-feedback-a" href="https://vk.com/im?sel=-216384572">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="path-1-inside-1_238_903" fill="white">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
+                            <path fillRule="evenodd" clipRule="evenodd"
                                   d="M5.50012 3.66663C3.98134 3.66663 2.75012 4.89785 2.75012 6.41663V11.4583H2.7501V18.7917L6.25015 15.5833H14.6668C16.1856 15.5833 17.4168 14.3521 17.4168 12.8333V6.41663C17.4168 4.89784 16.1856 3.66663 14.6668 3.66663H5.50012Z"></path>
                         </mask>
                         <path
@@ -27,4 +26,4 @@ class Feedback extends Component {
     }
 }
 
-export default Feedback;
+export default FeedbackBarItem;

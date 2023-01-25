@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import "../../Assets/Styles/AppBar.css"
+import "../Assets/Styles/AppBar.css"
 
 class AppBar extends Component {
     render() {
