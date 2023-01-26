@@ -16,10 +16,10 @@ import AppContent from "./Components/AppContent";
 import TeamMenuItem from "./Components/AppMenu/TeamMenuItem";
 import CodeMenuItem from "./Components/AppMenu/CodeMenuItem";
 import FilesMenuItem from "./Components/AppMenu/FilesMenuItem";
-import NewsContentItem from "./Components/Content/NewsContentItem";
-import TeamContentItem from "./Components/Content/TeamContentItem";
-import CodeContentItem from "./Components/Content/CodeContentItem";
-import FilesContentItem from "./Components/Content/FilesContentItem";
+import NewsContentItem from "./Components/AppContent/NewsContentItem";
+import TeamContentItem from "./Components/AppContent/TeamContentItem";
+import CodeContentItem from "./Components/AppContent/CodeContentItem";
+import FilesContentItem from "./Components/AppContent/FilesContentItem";
 
 class App extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ class App extends Component {
                     text: "надо подумать над дизайном и механикой прочтения и удаления"
                 },
             ],
-            active_content_item:0,
+            active_content_item:2,
             team_status:3
         }
 

@@ -1,34 +1,37 @@
-.appcontent{
+.appcontent {
     display: flex;
     flex-direction: column;
     margin-left: 1.8rem;
 }
 
-.appcontent-news{
+.appcontent-news {
     display: none;
 }
 
-.appcontent-team{
+.appcontent-team {
     display: none;
-    flex-direction:column;
-    width:800px;
+    flex-direction: column;
+    width: 1000px;
 }
 
-.appcontent-code{
+.appcontent-code {
     display: none;
+    flex-direction: column;
+    width: 1000px;
+    color: rgb(218, 218, 218);
 }
 
-.appcontent-files{
+.appcontent-files {
     display: none;
-    flex-direction:column;
-    width:800px;
+    flex-direction: column;
+    width: 1000px;
 }
 
-.appcontent-active{
+.appcontent-active {
     display: flex;
 }
 
-.table-holder{
+.table-holder {
     display: flex;
     flex-direction: column;
     padding: 1.18rem;
@@ -38,32 +41,32 @@
     color: rgb(186, 180, 194);
 }
 
-.team-status{
+.team-status {
     border: 1px solid rgb(46, 43, 49);
     border-radius: 10px;
     color: rgb(67, 67, 67);
     padding: 0.7rem;
 }
 
-.team-status-ok{
+.team-status-ok {
     background-color: #7fd843;
 }
 
-.team-status-wait{
+.team-status-wait {
     background-color: #b0b0b0;
 }
 
-.team-status-err{
+.team-status-err {
     background-color: #d84848;
 }
 
-.table-caption{
+.table-caption {
     margin: 0;
-    padding-bottom:8px;
+    padding-bottom: 8px;
     border-bottom: 1px dotted rgb(126, 120, 133);
 }
 
-.table-row{
+.table-row {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -71,17 +74,18 @@
     border-bottom: 1px dotted rgb(126, 120, 133);
     font-size: 1.05rem;
 }
-.table-row:hover{
+
+.table-row:hover {
     filter: brightness(1.2);
     background: rgb(46, 43, 49);
 }
 
 
-.table-row-name{
+.table-row-name {
     width: 240px;
 }
 
-.table-row-val{
+.table-row-val {
     padding: 5px;
     background: rgb(32, 30, 35);
     border: 1px solid #bdbdbd;
@@ -91,13 +95,128 @@
     color: rgb(186, 180, 194);
 }
 
-.table-row-text{
+.table-row-text {
     padding: 5px;
     font-size: 1rem;
     color: rgb(186, 180, 194);
 }
 
-.table-row-text a{
+.table-row-text a {
     font-size: 1rem;
     color: rgb(27, 129, 255);
+}
+
+.code-task-container {
+    margin: 0.8rem;
+}
+.code-task-container a {
+    color: rgb(27, 129, 255);
+}
+
+.code-task-text {
+    font-size: 1.1rem;
+    text-align: start;
+    margin-left: 0.7rem;
+    color: rgb(186, 180, 194);
+}
+
+.code-task-img {
+    width: 70%;
+}
+
+.code-task-sample{
+    margin-left: 1rem;
+}
+
+.ScrollbarsCustom-Thumb {
+    background: rgb(32, 30, 35) !important;
+}
+
+.code-hr{
+    margin: 20px 0;
+    padding: 0;
+    height: 0;
+    border: none;
+    border-top: 1px solid #333
+}
+
+.code-load-info{
+    display: flex;
+    flex-direction: row;
+    padding: 5px 3vw 5px 5px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.code-load-limits{
+    display: flex;
+    flex-direction: column;
+}
+
+.code-load-select{
+    font-size: 0.9rem;
+    background: rgb(32, 30, 35);
+    padding: 0.35rem 3rem 0.35rem 0.35rem;
+    border: 1px solid rgb(46, 43, 49);
+    border-radius: 5px;
+    color: rgb(186, 180, 194);
+}
+
+.code-input{
+    margin-left: 0.1rem;
+    margin-top: 0.5rem;
+    width: 92%;
+    height:20vh;
+    padding: 7px;
+    color: rgb(186, 180, 194);
+    border: 1px solid rgb(46, 43, 49);
+    border-radius: 5px;
+    background: rgb(32, 30, 35);
+    font-size: 0.9rem;
+    resize: none;
+}
+
+.code-check{
+    font-size: 1.1rem;
+    width:91px;
+    margin: 0.2rem;
+    padding: 0.4rem;
+    border: 1px solid rgb(46, 43, 49);
+    border-radius: 5px;
+    background: rgb(32, 30, 35);
+    cursor: pointer;
+}
+
+.code-check:hover{
+    filter: brightness(1.15);
+}
+
+.test-table{
+    border: 1px solid rgb(46, 43, 49);
+    border-radius: 5px;
+    background: rgb(32, 30, 35);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.test-table-row{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(46, 43, 49);
+}
+
+.test-table-cell{
+    padding: 8px;
+}
+.test-table-cell-status{
+    padding: 8px;
+    width: 400px;
+    border-right: 1px solid rgb(46, 43, 49);
+}
+
+.test-table-cell-id{
+    padding: 8px;
+    width: 15px;
+    border-right: 1px solid rgb(46, 43, 49);
 }

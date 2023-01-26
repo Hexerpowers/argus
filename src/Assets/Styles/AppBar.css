@@ -10,6 +10,7 @@
     top: 0;
     position: sticky;
     z-index: 2;
+    font-family: 'FiraCode', serif;
 }
 
 .appbar-holder {
@@ -129,10 +130,8 @@
 .appbar-notifications-expandable-text {
     width: 18.875rem;
     display: flex;
-    -webkit-box-pack: center;
-    justify-content: start;
-    -webkit-box-align: center;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: rgba(221, 221, 221, 0.4);
     flex-direction: column;
     font-size: 0.875rem;
