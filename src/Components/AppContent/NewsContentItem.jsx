@@ -10,7 +10,7 @@ class NewsContentItem extends Component {
         const s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
-        s.innerHTML = "VK.Widgets.Group(\"vk_groups\", {mode: 4, wide: 1, width: \"800\", height: \"900\"}, 216384572);";
+        s.innerHTML = "VK.Widgets.Group(\"vk_groups\", {mode: 4, wide: 1, width: \"1000\", height: \"900\"}, 216384572);";
         document.body.appendChild(s);
     }
 

@@ -157,6 +157,10 @@
     margin-left: 8px;
 }
 
+.notifications-no{
+    padding:10px;
+}
+
 
 .appbar-account {
     display: flex;

@@ -21,31 +21,65 @@ import TeamContentItem from "./Components/AppContent/TeamContentItem";
 import CodeContentItem from "./Components/AppContent/CodeContentItem";
 import FilesContentItem from "./Components/AppContent/FilesContentItem";
 
+
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "Артём Акжигитов",
-            logged_in: true,
-            new_notifs: true,
-            notifs: [
-                {
-                    caption: "Новая версия регламента",
-                    text: "доступна для загрузки в разделе «Материалы»"
-                },
-                {
-                    caption: "Тестовое уведомление",
-                    text: "надо подумать над дизайном и механикой прочтения и удаления"
-                },
-            ],
-            active_content_item:2,
-            team_status:3
+            active_content_item: 0,
+            team_status: 0,
+            username: null,
+            uuid: null,
+            token: null,
+            logged_in: false,
+            new_notifs: false,
+            notifs: [],
+            team_info:{}
         }
 
         this.elevateNotifs = this.elevateNotifs.bind(this)
         this.elevateLogout = this.elevateLogout.bind(this)
         this.elevateLogin = this.elevateLogin.bind(this)
+        this.elevateBadToken = this.elevateBadToken.bind(this)
+        this.elevateUpdate = this.elevateUpdate.bind(this)
         this.elevateMenuItemClick = this.elevateMenuItemClick.bind(this)
+        this.getCookie = this.getCookie.bind(this)
+        this.setCookie = this.setCookie.bind(this)
+    }
+
+    getCookie(name) {
+        let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+
+    setCookie(name, value, options = {}) {
+        options = {
+            path: '/',
+            ...options
+        };
+        if (options.expires instanceof Date) {
+            options.expires = options.expires.toUTCString();
+        }
+        let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+        for (let optionKey in options) {
+            updatedCookie += "; " + optionKey;
+            let optionValue = options[optionKey];
+            if (optionValue !== true) {
+                updatedCookie += "=" + optionValue;
+            }
+        }
+        document.cookie = updatedCookie;
+    }
+
+    componentDidMount() {
+        let u_token = this.getCookie('auth_token')
+        if (typeof u_token !== 'undefined') {
+            this.setState({
+                token: u_token
+            });
+        }
     }
 
     elevateNotifs() {
@@ -56,19 +90,56 @@ class App extends Component {
 
     elevateLogout() {
         this.setState({
+            username: '',
+            uuid: '',
+            token: '',
+            logged_in: false,
+            new_notifs: false,
+            notifs: [
+                {
+                    caption: "Капитанам команд",
+                    text: "доступна форма загрузки данных о команде и её участниках"
+                }
+            ],
+            active_content_item: 0,
+            team_status: 0,
+        });
+        this.setCookie('auth_token', '')
+    }
+
+    elevateLogin(g_username, g_uuid, g_token, g_new_notifs, g_notifs, g_team_status, g_team_info) {
+        this.setState({
+            username: g_username,
+            uuid: g_uuid,
+            token: g_token,
+            logged_in: true,
+            new_notifs: Boolean(g_new_notifs),
+            notifs: [
+                {
+                    caption: "Капитанам команд",
+                    text: "доступна форма загрузки данных о команде и её участниках"
+                }
+            ],
+            active_content_item: 0,
+            team_status: Number(g_team_status),
+            team_info: g_team_info
+        });
+        this.setCookie('auth_token', g_token)
+    }
+
+    elevateBadToken() {
+        this.setState({
             logged_in: false
         });
         this.setState({
-            new_notifs: false
+            username: ''
         });
+        this.setCookie('auth_token', 'you are bad')
     }
 
-    elevateLogin(name) {
+    elevateUpdate(){
         this.setState({
-            logged_in: true
-        });
-        this.setState({
-            username: name
+            team_status: 2
         });
     }
 
@@ -85,13 +156,16 @@ class App extends Component {
                     <LogoBarItem/>
                     <div className="appbar-inner">
                         <FeedbackBarItem/>
-                        <NotificationsBarItem available={this.state.new_notifs} notifs={this.state.notifs}
-                                              elevateNotifs={this.elevateNotifs}/>
+                        {this.state.logged_in &&
+                            <NotificationsBarItem available={this.state.new_notifs} notifs={this.state.notifs}
+                                                  elevateNotifs={this.elevateNotifs}/>
+                        }
                         {this.state.logged_in &&
                             <AccountBarItem elevateLogout={this.elevateLogout} username={this.state.username}/>
                         }
                         {!this.state.logged_in &&
-                            <AuthBarItem elevateLogin={this.elevateLogin}/>
+                            <AuthBarItem token={this.state.token} elevateBadToken={this.elevateBadToken}
+                                         elevateLogin={this.elevateLogin}/>
                         }
                     </div>
                 </AppBar>
@@ -100,17 +174,30 @@ class App extends Component {
                         <NewsMenuItem active={this.state.active_content_item} elevate={this.elevateMenuItemClick}/>
                         {this.state.logged_in &&
                             <div>
-                                <TeamMenuItem active={this.state.active_content_item} elevate={this.elevateMenuItemClick}/>
-                                <CodeMenuItem active={this.state.active_content_item} elevate={this.elevateMenuItemClick}/>
-                                <FilesMenuItem active={this.state.active_content_item} elevate={this.elevateMenuItemClick}/>
+                                <TeamMenuItem active={this.state.active_content_item}
+                                              elevate={this.elevateMenuItemClick}/>
+                                {/*<CodeMenuItem active={this.state.active_content_item}*/}
+                                {/*              elevate={this.elevateMenuItemClick}/>*/}
+                                <FilesMenuItem active={this.state.active_content_item}
+                                               elevate={this.elevateMenuItemClick}/>
                             </div>
                         }
                     </AppMenu>
                     <AppContent>
                         <NewsContentItem active={this.state.active_content_item}/>
-                        <TeamContentItem status={this.state.team_status} active={this.state.active_content_item}/>
-                        <CodeContentItem active={this.state.active_content_item}/>
-                        <FilesContentItem active={this.state.active_content_item}/>
+                        {this.state.logged_in &&
+                            <div>
+                                <TeamContentItem
+                                    status={this.state.team_status}
+                                    active={this.state.active_content_item}
+                                    uuid={this.state.uuid}
+                                    team_info={this.state.team_info}
+                                    elevateUpdate={this.elevateUpdate}
+                                />
+                                {/*<CodeContentItem active={this.state.active_content_item}/>*/}
+                                <FilesContentItem active={this.state.active_content_item}/>
+                            </div>
+                        }
                     </AppContent>
                 </AppPage>
             </AppContainer>

@@ -12,7 +12,7 @@ class CodeContentItem extends Component {
         let active = this.props.active === this.e_id ? "appcontent-code appcontent-active" : "appcontent-code"
         return (
             <div className={active}>
-                <Scrollbar style={{width: '100%', height: '83vh'}}>
+                <Scrollbar style={{width: '100%', height: '92vh'}}>
                     <h2>Загрузка кода на проверку</h2>
                     <h3>Напишите программу. Тестируется через stdin → stdout</h3>
                     <div className="code-load-info font-firacode">

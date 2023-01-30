@@ -7,8 +7,17 @@ class AuthBarItem extends Component {
         super(props);
         this.showAuth = this.showAuth.bind(this)
         this.hideAuth = this.hideAuth.bind(this)
-        this.login = this.login.bind(this)
+        this.auth_by_credentials = this.auth_by_credentials.bind(this)
+        this.auth_by_token = this.auth_by_token.bind(this)
         this.register = this.register.bind(this)
+        this.checkEmail = this.checkEmail.bind(this)
+        this.checkPassword = this.checkPassword.bind(this)
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.token !== prevProps.token && this.props.token.length > 20) {
+            this.auth_by_token(this.props.token);
+        }
     }
 
     showAuth() {
@@ -21,7 +30,15 @@ class AuthBarItem extends Component {
         document.getElementById('auth-expandable-outer').classList.remove('appbar-auth-active');
     }
 
-    login() {
+    checkEmail(msg) {
+        return msg.length > 5 && msg.length < 40 && msg.includes('@');
+    }
+
+    checkPassword(msg) {
+        return msg.length > 8 && msg.length < 20;
+    }
+
+    auth_by_credentials() {
         Swal.fire({
             title: 'Вход',
             html: `<input type="text" id="login" class="swal2-input" placeholder="Логин">
@@ -31,43 +48,158 @@ class AuthBarItem extends Component {
             preConfirm: () => {
                 const login = Swal.getPopup().querySelector('#login').value
                 const password = Swal.getPopup().querySelector('#password').value
-                if (!login || !password) {
-                    Swal.showValidationMessage(`Введите логин и пароль`)
+                if (!login) {
+                    Swal.showValidationMessage(`Введите логин`)
+                }
+                if (!password) {
+                    Swal.showValidationMessage(`Введите пароль`)
+                }
+                if (!this.checkEmail(login)) {
+                    Swal.showValidationMessage(`Какой-то у вас логин странный`)
+                }
+                if (!this.checkPassword(password)) {
+                    Swal.showValidationMessage(`Какой-то у вас пароль странный`)
                 }
                 return {login: login, password: password}
             }
         }).then((result) => {
-            //   Swal.fire(`
-            //   Login: ${result.value.login}
-            //   Password: ${result.value.password}
-            // `.trim())
-            this.props.elevateLogin("Артём Акжигитов")
+            if (typeof result.value !== 'undefined') {
+                fetch("https://api.hxps.ru/argus/login", {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify({
+                        login: result.value.login.trim(),
+                        password: result.value.password.trim()
+                    })
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                            if (data['msg'] !== 'accepted') {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Попробуй ещё раз',
+                                    text: 'Неверный логин или пароль',
+                                    footer: '<a href="https://vk.com/im?sel=-216384572">' +
+                                        'Помощь с восстановлением учётных данных</a>'
+                                })
+                            } else {
+                                this.props.elevateLogin(data['username'], data['uuid'], data['token'],
+                                    data['new_notifs'], data['notifs'], data['team_status'], data['team_info'])
+                            }
+                        }
+                    )
+            }
         })
+    }
+
+    auth_by_token(token) {
+        fetch("https://api.hxps.ru/argus/login", {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                token: token.trim(),
+            })
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                    if (data['msg'] !== 'accepted') {
+                        this.props.elevateBadToken()
+                    } else {
+                        this.props.elevateLogin(data['username'], data['uuid'], data['token'],
+                            data['new_notifs'], data['notifs'], data['team_status'], data['team_info'])
+                    }
+                }
+            )
     }
 
     register() {
         Swal.fire({
             title: 'Регистрация',
-            html: `<input type="text" id="login" class="swal2-input" placeholder="Логин">
-                    <input type="text" id="password" class="swal2-input" placeholder="Пароль">
-                    <input type="text" id="name" class="swal2-input" placeholder="Эл. почта">
+            html: `<input type="text" id="login" class="swal2-input" placeholder="Эл. почта">
+                    <input type="password" id="password" class="swal2-input" placeholder="Пароль">
                     `,
+            footer: '<div>Нажимая на кнопку "зарегистрироваться", я даю <a class="app-a" href="https://">согласие на обработку персональных данных.</a></div>',
             confirmButtonText: 'Зарегистрироваться',
             focusConfirm: false,
             preConfirm: () => {
                 const login = Swal.getPopup().querySelector('#login').value
                 const password = Swal.getPopup().querySelector('#password').value
-                if (!login || !password) {
-                    Swal.showValidationMessage(`Введите логин и пароль`)
+                if (!login) {
+                    Swal.showValidationMessage(`Введите логин`)
+                }
+                if (!password) {
+                    Swal.showValidationMessage(`Введите пароль`)
+                }
+                if (!this.checkEmail(login)) {
+                    Swal.showValidationMessage(`Логин должен быть от 5 до 40 символов в длину и содержать действующий адрес электронной почты`)
+                }
+                if (!this.checkPassword(password)) {
+                    Swal.showValidationMessage(`Пароль должен быть от 8 о 20 символов в длину`)
                 }
                 return {login: login, password: password}
             }
         }).then((result) => {
-            //   Swal.fire(`
-            //   Login: ${result.value.login}
-            //   Password: ${result.value.password}
-            // `.trim())
-            this.props.elevateLogin("Артём Акжигитов")
+            if (typeof result.value !== 'undefined') {
+                fetch("https://api.hxps.ru/argus/register", {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify({
+                        login: result.value.login.trim(),
+                        password: result.value.password.trim()
+                    })
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                            if (data['msg'] !== 'accepted') {
+                                if (data['msg'] === 'rejected') {
+                                    if (data['reason']==='duplicate_login'){
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Такой логин уже зарегистрирован',
+                                            text: 'Выбери другой адрес электронной почты'
+                                        }).then(()=>{
+                                            this.register()
+                                        })
+                                    }else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Произошла ошибка',
+                                            text: 'Попробуй ещё раз позднее',
+                                            footer: '<a href="https://memepedia.ru/hackerman/">' +
+                                                'Почему это продолжает происходить?</a>'
+                                        })
+                                    }
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Попробуй ещё раз',
+                                        text: 'Вероятно, ошибка на нашей стороне. Мы уже разбираемся...',
+                                        footer: '<a href="https://vk.com/im?sel=-216384572">' +
+                                            'Помощь с регистрацией</a>'
+                                    })
+                                }
+                            } else {
+                                this.props.elevateLogin(data['username'], data['uuid'], data['token'],
+                                    data['new_notifs'], data['notifs'], data['team_status'], data['team_info'])
+                            }
+                        }
+                    )
+            }
         })
     }
 
@@ -96,7 +228,7 @@ class AuthBarItem extends Component {
                         </defs>
                     </svg>
                     <div className="appbar-auth-expandable-text">
-                        <div onClick={this.login} className="appbar-auth-expandable-login">Вход</div>
+                        <div onClick={this.auth_by_credentials} className="appbar-auth-expandable-login">Вход</div>
                         <div onClick={this.register} className="appbar-auth-expandable-register">Регистрация</div>
                     </div>
                 </div>

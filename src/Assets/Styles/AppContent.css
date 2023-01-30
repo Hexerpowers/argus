@@ -44,7 +44,7 @@
 .team-status {
     border: 1px solid rgb(46, 43, 49);
     border-radius: 10px;
-    color: rgb(67, 67, 67);
+    color: black;
     padding: 0.7rem;
 }
 
@@ -57,7 +57,33 @@
 }
 
 .team-status-err {
-    background-color: #d84848;
+    background-color: #dd7272;;
+}
+
+.team-caption{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team-caption-save{
+    font-size: 1.1rem;
+    width:91px;
+    margin: 0.2rem;
+    padding: 0.4rem;
+    border: 2px solid rgb(46, 43, 49);
+    border-radius: 5px;
+    background: rgb(32, 30, 35);
+    cursor: pointer;
+}
+
+.team-caption-save-active{
+    border: 2px solid rgb(22, 142, 255);
+}
+
+.team-caption-save:hover{
+    filter: brightness(1.15);
 }
 
 .table-caption {
@@ -102,6 +128,11 @@
 }
 
 .table-row-text a {
+    font-size: 1rem;
+    color: rgb(27, 129, 255);
+}
+
+.app-a {
     font-size: 1rem;
     color: rgb(27, 129, 255);
 }

@@ -56,7 +56,7 @@ class NotificationsBarItem extends Component {
                             </div>
                             )}
                         {!this.props.available &&
-                            <div className="appbar-notifications-expandable-msg">Нет уведомлений</div>
+                            <div className="appbar-notifications-expandable-msg"><div className="notifications-no">Нет уведомлений</div></div>
                         }
                     </div>
                 </div>

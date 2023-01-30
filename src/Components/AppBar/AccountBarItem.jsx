@@ -23,10 +23,11 @@ class AccountBarItem extends Component {
     }
 
     render() {
+        let link = "https://www.gravatar.com/avatar/e78e070e2ee7ef49fc1f88bb636d642a?d=https://ui-avatars.com/api/"+this.props.username+"/128/CC4AF4"
         return (
             <div className="appbar-account">
                 <div onClick={this.showAccount}  className="appbar-account-inner">
-                    <img src="https://www.gravatar.com/avatar/e78e070e2ee7ef49fc1f88bb636d642a?d=https://ui-avatars.com/api/Artyom%2BAlbertovich/128/CC4AF4"
+                    <img src={link}
                         className="appbar-account-img"  alt=""/>
                     <span className="appbar-account-text">{this.props.username}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6" fill="none">
