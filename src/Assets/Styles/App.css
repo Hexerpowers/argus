@@ -32,3 +32,41 @@ body {
 .text-bold{
     font-weight: bold;
 }
+
+
+.vertical-ruler{
+    display: block;
+    position: fixed;
+    /*background: red;*/
+    height: 100vh;
+    /* padding-bottom: 60px; */
+    /* padding-top: 60px; */
+    z-index: 0;
+    width: 100px;
+}
+
+.vertical-ruler-co{
+    height: calc(100% - 74px);
+    margin-top: 54px;
+    /*background: blue;*/
+}
+
+.horizontal-ruler{
+    display: block;
+    position: fixed;
+    /*background: red;*/
+    width: 100vw;
+    /* padding-bottom: 60px; */
+    /* padding-top: 60px; */
+    z-index: 0;
+    height: 100px;
+}
+
+.horizontal-ruler-co{
+    width: calc(100% - 190px);
+    max-width: 1430px;
+    margin-left: 180px;
+    /*background: blue;*/
+    height: 100%;
+}
+

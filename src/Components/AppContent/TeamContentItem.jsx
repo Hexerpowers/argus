@@ -1,13 +1,29 @@
 import React, {Component} from 'react';
 import Swal from "sweetalert2";
+import {Scrollbar} from 'react-scrollbars-custom';
 
 class TeamContentItem extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            height:document.getElementById('v-linear').offsetHeight,
+            width:document.getElementById('h-linear').offsetWidth-document.getElementById('apppage_div').getBoundingClientRect().left
+        }
         this.e_id = 1
         this.toggleSave = this.toggleSave.bind(this)
         this.saveTeamData = this.saveTeamData.bind(this)
     }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.updateDimensions);
+        this.setState({ height: document.getElementById('v-linear').offsetHeight });
+        this.setState({ width: document.getElementById('h-linear').offsetWidth-document.getElementById('apppage_div').getBoundingClientRect().left });
+    }
+
+    updateDimensions = () => {
+        this.setState({ height: document.getElementById('v-linear').offsetHeight });
+        this.setState({ width: document.getElementById('h-linear').offsetWidth-document.getElementById('apppage_div').getBoundingClientRect().left });
+    };
 
     toggleSave() {
         document.getElementById("team-save").classList.add("team-caption-save-active")
@@ -31,6 +47,7 @@ class TeamContentItem extends Component {
         let team_crew_1 = document.getElementById("team-crew-1").value
         let team_crew_2 = document.getElementById("team-crew-2").value
         let team_crew_3 = document.getElementById("team-crew-3").value
+        let team_crew_4 = document.getElementById("team-crew-4").value
         let team_sizes = document.getElementById("team-sizes").value
         let team_comm = document.getElementById("team-comm").value
 
@@ -77,6 +94,7 @@ class TeamContentItem extends Component {
                 team_crew_1: team_crew_1.trim(),
                 team_crew_2: team_crew_2.trim(),
                 team_crew_3: team_crew_3.trim(),
+                team_crew_4: team_crew_4.trim(),
                 team_sizes: team_sizes.trim(),
                 team_comm: team_comm.trim(),
             })
@@ -122,65 +140,74 @@ class TeamContentItem extends Component {
         let info = JSON.parse(this.props.team_info)
         return (
             <div className={active}>
-                <h2>Статус команды:</h2>
-                {this.renderStatus()}
-                <div className="team-caption">
-                    <h2>Информация о команде</h2>
-                    <div onClick={this.saveTeamData} id="team-save" className="team-caption-save">Сохранить</div>
-                </div>
-                <div className="table-holder">
-                    <h3 className="table-caption">Общая информация (все поля обязательны для заполнения)</h3>
-                    <div className="table-row">
-                        <div className="table-row-name">Название</div>
-                        <input onChange={this.toggleSave} type="text" id="team-name" className="table-row-val"
-                               placeholder="Красиво-тяжёлые чипсы"
-                               defaultValue={typeof info['team_name'] !== 'undefined' ? info['team_name'] : ""}/>
+                <Scrollbar noScrollX style={{width: this.state.width, height: this.state.height-20}}>
+                    <div className="team-scroll-holder" id="team-scroll-holder">
+                        <h2>Статус команды:</h2>
+                        {this.renderStatus()}
+                        <div className="team-caption">
+                            <h2>Информация о команде</h2>
+                            <div onClick={this.saveTeamData} id="team-save" className="team-caption-save">Сохранить
+                            </div>
+                        </div>
+                        <div className="table-holder">
+                            <h3 className="table-caption">Общая информация (все поля обязательны для заполнения)</h3>
+                            <div className="table-row">
+                                <div className="table-row-name">Название</div>
+                                <input onChange={this.toggleSave} type="text" id="team-name" className="table-row-val"
+                                       placeholder="Красиво-тяжёлые чипсы"
+                                       defaultValue={typeof info['team_name'] !== 'undefined' ? info['team_name'] : ""}/>
+                            </div>
+                            <div className="table-row">
+                                <div className="table-row-name">Город</div>
+                                <input onChange={this.toggleSave} type="text" id="team-city" className="table-row-val"
+                                       placeholder="Воркута"
+                                       defaultValue={typeof info['team_city'] !== 'undefined' ? info['team_city'] : ""}/>
+                            </div>
+                            <div className="table-row">
+                                <div className="table-row-name">ВУЗ</div>
+                                <input onChange={this.toggleSave} type="text" id="team-vuz" className="table-row-val"
+                                       placeholder="*неразборчиво*"
+                                       defaultValue={typeof info['team_vuz'] !== 'undefined' ? info['team_vuz'] : ""}/>
+                            </div>
+                            <br/><br/>
+                            <h3 className="table-caption">Информация о членах команды</h3>
+                            <div className="table-row">
+                                <div className="table-row-name">ФИО участника №1 (капитан)</div>
+                                <input onChange={this.toggleSave} type="text" id="team-crew-1" className="table-row-val"
+                                       defaultValue={typeof info['team_crew_1'] !== 'undefined' ? info['team_crew_1'] : ""}/>
+                            </div>
+                            <div className="table-row">
+                                <div className="table-row-name">ФИО участника №2</div>
+                                <input onChange={this.toggleSave} type="text" id="team-crew-2" className="table-row-val"
+                                       defaultValue={typeof info['team_crew_2'] !== 'undefined' ? info['team_crew_2'] : ""}/>
+                            </div>
+                            <div className="table-row">
+                                <div className="table-row-name">ФИО участника №3</div>
+                                <input onChange={this.toggleSave} type="text" id="team-crew-3" className="table-row-val"
+                                       defaultValue={typeof info['team_crew_3'] !== 'undefined' ? info['team_crew_3'] : ""}/>
+                            </div>
+                            <div className="table-row">
+                                <div className="table-row-name">ФИО участника №4</div>
+                                <input onChange={this.toggleSave} type="text" id="team-crew-4" className="table-row-val"
+                                       defaultValue={typeof info['team_crew_4'] !== 'undefined' ? info['team_crew_4'] : ""}/>
+                            </div>
+                            <br/><br/>
+                            <h3 className="table-caption">Дополнительная информация</h3>
+                            <div className="table-row">
+                                <div className="table-row-name">Размеры футболок (для каждого члена команды)</div>
+                                <input onChange={this.toggleSave} type="text" id="team-sizes" className="table-row-val"
+                                       defaultValue={typeof info['team_sizes'] !== 'undefined' ? info['team_sizes'] : ""}
+                                       placeholder="2 шт. XL, 2шт XXl"/>
+                            </div>
+                            <div className="table-row">
+                                <div className="table-row-name">Удобный метод связи</div>
+                                <input onChange={this.toggleSave} type="text" id="team-comm" className="table-row-val"
+                                       defaultValue={typeof info['team_comm'] !== 'undefined' ? info['team_comm'] : ""}
+                                       placeholder="Telegram, @Hexerpowers"/>
+                            </div>
+                        </div>
                     </div>
-                    <div className="table-row">
-                        <div className="table-row-name">Город</div>
-                        <input onChange={this.toggleSave} type="text" id="team-city" className="table-row-val"
-                               placeholder="Воркута"
-                               defaultValue={typeof info['team_city'] !== 'undefined' ? info['team_city'] : ""}/>
-                    </div>
-                    <div className="table-row">
-                        <div className="table-row-name">ВУЗ</div>
-                        <input onChange={this.toggleSave} type="text" id="team-vuz" className="table-row-val"
-                               placeholder="*неразборчиво*"
-                               defaultValue={typeof info['team_vuz'] !== 'undefined' ? info['team_vuz'] : ""}/>
-                    </div>
-                    <br/><br/>
-                    <h3 className="table-caption">Информация о членах команды</h3>
-                    <div className="table-row">
-                        <div className="table-row-name">ФИО участника 1 (капитан)</div>
-                        <input onChange={this.toggleSave} type="text" id="team-crew-1" className="table-row-val"
-                               defaultValue={typeof info['team_crew_1'] !== 'undefined' ? info['team_crew_1'] : ""}/>
-                    </div>
-                    <div className="table-row">
-                        <div className="table-row-name">ФИО участника 2</div>
-                        <input onChange={this.toggleSave} type="text" id="team-crew-2" className="table-row-val"
-                               defaultValue={typeof info['team_crew_2'] !== 'undefined' ? info['team_crew_2'] : ""}/>
-                    </div>
-                    <div className="table-row">
-                        <div className="table-row-name">ФИО участника 3</div>
-                        <input onChange={this.toggleSave} type="text" id="team-crew-3" className="table-row-val"
-                               defaultValue={typeof info['team_crew_3'] !== 'undefined' ? info['team_crew_3'] : ""}/>
-                    </div>
-                    <br/><br/>
-                    <h3 className="table-caption">Дополнительная информация</h3>
-                    <div className="table-row">
-                        <div className="table-row-name">Размеры футболок (для каждого члена команды)</div>
-                        <input onChange={this.toggleSave} type="text" id="team-sizes" className="table-row-val"
-                               defaultValue={typeof info['team_sizes'] !== 'undefined' ? info['team_sizes'] : ""}
-                               placeholder="2 шт. XL, 1шт XXl"/>
-                    </div>
-                    <div className="table-row">
-                        <div className="table-row-name">Удобный метод связи</div>
-                        <input onChange={this.toggleSave} type="text" id="team-comm" className="table-row-val"
-                               defaultValue={typeof info['team_comm'] !== 'undefined' ? info['team_comm'] : ""}
-                               placeholder="Telegram, @Hexerpowers"/>
-                    </div>
-                </div>
-
+                </Scrollbar>
             </div>
         );
     }

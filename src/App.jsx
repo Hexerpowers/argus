@@ -152,6 +152,8 @@ class App extends Component {
     render() {
         return (
             <AppContainer>
+                <div className="vertical-ruler"><div id="v-linear" className="vertical-ruler-co"> </div> </div>
+                <div className="horizontal-ruler"><div id="h-linear" className="horizontal-ruler-co"> </div> </div>
                 <AppBar>
                     <LogoBarItem/>
                     <div className="appbar-inner">

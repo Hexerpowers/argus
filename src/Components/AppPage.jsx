@@ -6,7 +6,7 @@ class AppPage extends Component {
     render() {
         return (
             <div className="apppage">
-                <div className="apppage-holder">
+                <div id="apppage_div" className="apppage-holder">
                     {this.props.children}
                 </div>
             </div>

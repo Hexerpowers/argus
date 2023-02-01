@@ -69,7 +69,8 @@
 
 .team-caption-save{
     font-size: 1.1rem;
-    width:91px;
+    width:110px;
+    text-align: center;
     margin: 0.2rem;
     padding: 0.4rem;
     border: 2px solid rgb(46, 43, 49);
@@ -84,6 +85,10 @@
 
 .team-caption-save:hover{
     filter: brightness(1.15);
+}
+
+.team-scroll-holder{
+    padding-right: 5px;
 }
 
 .table-caption {
@@ -109,6 +114,7 @@
 
 .table-row-name {
     width: 240px;
+    padding-right: 5px;
 }
 
 .table-row-val {
@@ -250,4 +256,8 @@
     padding: 8px;
     width: 15px;
     border-right: 1px solid rgb(46, 43, 49);
+}
+
+.files-scroll-holder{
+    padding-right: 5px;
 }

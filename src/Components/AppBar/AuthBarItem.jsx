@@ -128,7 +128,7 @@ class AuthBarItem extends Component {
             html: `<input type="text" id="login" class="swal2-input" placeholder="Эл. почта">
                     <input type="password" id="password" class="swal2-input" placeholder="Пароль">
                     `,
-            footer: '<div>Нажимая на кнопку "зарегистрироваться", я даю <a class="app-a" href="https://">согласие на обработку персональных данных.</a></div>',
+            footer: '<div>Нажимая на кнопку "Зарегистрироваться", Вы даёте <a target="_blank" rel="noreferrer" class="app-a" href="https://argus.hxps.ru/legal/agreement.pdf">согласие на обработку персональных данных</a> и соглашаетесь с <a target="_blank" rel="noreferrer" class="app-a" href="https://argus.hxps.ru/legal/privacy_policy.pdf">политикой конфиденциальности</a>.</div>',
             confirmButtonText: 'Зарегистрироваться',
             focusConfirm: false,
             preConfirm: () => {
@@ -144,7 +144,7 @@ class AuthBarItem extends Component {
                     Swal.showValidationMessage(`Логин должен быть от 5 до 40 символов в длину и содержать действующий адрес электронной почты`)
                 }
                 if (!this.checkPassword(password)) {
-                    Swal.showValidationMessage(`Пароль должен быть от 8 о 20 символов в длину`)
+                    Swal.showValidationMessage(`Пароль должен быть от 8 до 20 символов в длину`)
                 }
                 return {login: login, password: password}
             }
