@@ -48,6 +48,7 @@ class TeamContentItem extends Component {
         let team_crew_2 = document.getElementById("team-crew-2").value
         let team_crew_3 = document.getElementById("team-crew-3").value
         let team_crew_4 = document.getElementById("team-crew-4").value
+        let team_crew_5 = document.getElementById("team-crew-5").value
         let team_sizes = document.getElementById("team-sizes").value
         let team_comm = document.getElementById("team-comm").value
 
@@ -95,6 +96,7 @@ class TeamContentItem extends Component {
                 team_crew_2: team_crew_2.trim(),
                 team_crew_3: team_crew_3.trim(),
                 team_crew_4: team_crew_4.trim(),
+                team_crew_5: team_crew_5.trim(),
                 team_sizes: team_sizes.trim(),
                 team_comm: team_comm.trim(),
             })
@@ -193,6 +195,11 @@ class TeamContentItem extends Component {
                             </div>
                             <br/><br/>
                             <h3 className="table-caption">Дополнительная информация</h3>
+                            <div className="table-row">
+                                <div className="table-row-name">ФИО руководителя</div>
+                                <input onChange={this.toggleSave} type="text" id="team-crew-5" className="table-row-val"
+                                       defaultValue={typeof info['team_crew_5'] !== 'undefined' ? info['team_crew_5'] : ""}/>
+                            </div>
                             <div className="table-row">
                                 <div className="table-row-name">Размеры футболок (для каждого члена команды)</div>
                                 <input onChange={this.toggleSave} type="text" id="team-sizes" className="table-row-val"
