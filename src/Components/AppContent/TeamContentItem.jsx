@@ -124,9 +124,9 @@ class TeamContentItem extends Component {
     renderStatus() {
         switch (this.props.status) {
             case 0:
-                return <div className="team-status team-status-ok">Допущены до участия в отборочном этапе</div>;
+                return <div className="team-status team-status-ok">Допущена до участия в отборочном этапе</div>;
             case 1:
-                return <div className="team-status team-status-ok">Допущены до участия в заключительном этапе</div>;
+                return <div className="team-status team-status-ok">Допущена до участия в заключительном этапе</div>;
             case 2:
                 return <div className="team-status team-status-wait">Данные команды проходят проверку</div>;
             case 3:
@@ -144,7 +144,7 @@ class TeamContentItem extends Component {
             <div className={active}>
                 <Scrollbar noScrollX style={{width: this.state.width, height: this.state.height-20}}>
                     <div className="team-scroll-holder" id="team-scroll-holder">
-                        <h2>Статус команды:</h2>
+                        <h2>Статус команды</h2>
                         {this.renderStatus()}
                         <div className="team-caption">
                             <h2>Информация о команде</h2>

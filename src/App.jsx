@@ -108,18 +108,19 @@ class App extends Component {
     }
 
     elevateLogin(g_username, g_uuid, g_token, g_new_notifs, g_notifs, g_team_status, g_team_info) {
+        let notifs_json = JSON.parse(g_notifs)
+        let notifs_a = []
+        for(let i in notifs_json) {
+            notifs_a.push(notifs_json[i]);
+        }
+
         this.setState({
             username: g_username,
             uuid: g_uuid,
             token: g_token,
             logged_in: true,
-            new_notifs: Boolean(g_new_notifs),
-            notifs: [
-                {
-                    caption: "Капитанам команд",
-                    text: "доступна форма загрузки данных о команде и её участниках"
-                }
-            ],
+            new_notifs: g_new_notifs>0,
+            notifs: notifs_a,
             active_content_item: 0,
             team_status: Number(g_team_status),
             team_info: g_team_info
@@ -159,8 +160,12 @@ class App extends Component {
                     <div className="appbar-inner">
                         <FeedbackBarItem/>
                         {this.state.logged_in &&
-                            <NotificationsBarItem available={this.state.new_notifs} notifs={this.state.notifs}
-                                                  elevateNotifs={this.elevateNotifs}/>
+                            <NotificationsBarItem
+                                uuid={this.state.uuid}
+                                available={this.state.new_notifs}
+                                notifs={this.state.notifs}
+                                elevateNotifs={this.elevateNotifs}
+                            />
                         }
                         {this.state.logged_in &&
                             <AccountBarItem elevateLogout={this.elevateLogout} username={this.state.username}/>

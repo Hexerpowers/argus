@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Swal from "sweetalert2";
 
 class NotificationsBarItem extends Component {
     constructor(props) {
@@ -11,6 +12,32 @@ class NotificationsBarItem extends Component {
         document.getElementById('notif-expandable-inner').classList.add('appbar-notifications-active');
         document.getElementById('notif-expandable-outer').classList.add('appbar-notifications-active');
         document.getElementById('notif-marker').classList.add('elem-disabled');
+        fetch("https://api.hxps.ru/argus/notifs", {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                uuid: this.props.uuid,
+                transaction: "read"
+            })
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                    if (data['msg'] !== 'accepted') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Проблемы с соединением',
+                            text: 'Перегружен сервер или плохой интернет',
+                            footer: '<a href="https://vk.com/im?sel=-216384572">' +
+                                'Помощь с этой проблемой</a>'
+                        })
+                    }
+                }
+            )
     }
 
     hideNotifications() {
@@ -44,8 +71,7 @@ class NotificationsBarItem extends Component {
                         </defs>
                     </svg>
                     <div className="appbar-notifications-expandable-text">
-                        {this.props.available &&
-                            this.props.notifs.map((obj, i) =>
+                        {this.props.notifs.map((obj, i) =>
                             <div className="notif-card" key={i}>
                                 <div className="notif-caption">
                                     {obj.caption}
@@ -55,7 +81,7 @@ class NotificationsBarItem extends Component {
                                 </div>
                             </div>
                             )}
-                        {!this.props.available &&
+                        {this.props.notifs.length < 1 &&
                             <div className="appbar-notifications-expandable-msg"><div className="notifications-no">Нет уведомлений</div></div>
                         }
                     </div>
